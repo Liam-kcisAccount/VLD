@@ -1,0 +1,128 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Anyone who opens /admin/ must log in with Netlify Identity.
+# Only people you've invited (Site settings → Identity → Invite users)
+# can ever log in — your teacher never needs an account, they just
+# read the published site like any other visitor.
+publish_mode: simple
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
+
+collections:
+
+  - name: "home"
+    label: "Home Page"
+    files:
+      - name: "home"
+        label: "Home content"
+        file: "content/home.json"
+        fields:
+          - { label: "Your name (or how you want to be shown)", name: "name", widget: "string" }
+          - { label: "Grade", name: "grade", widget: "string" }
+          - { label: "Tagline (one line, under the header)", name: "tagline", widget: "string" }
+          - { label: "About paragraph(s)", name: "about", widget: "text" }
+          - { label: "Course name", name: "course_name", widget: "string" }
+          - { label: "Course URL", name: "course_url", widget: "string" }
+          - { label: "Start date", name: "start_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+          - label: "Quick stats shown on the home page"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Value", name: "value", widget: "string" }
+
+  - name: "course_log"
+    label: "Course Log"
+    files:
+      - name: "course_log"
+        label: "Course log content"
+        file: "content/course-log.json"
+        fields:
+          - { label: "Course name", name: "course_name", widget: "string" }
+          - { label: "Provider", name: "provider", widget: "string" }
+          - { label: "Course URL", name: "course_url", widget: "string" }
+          - { label: "Why you chose it", name: "why", widget: "text" }
+          - { label: "Approved date", name: "approved_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+          - { label: "Supervisor teacher", name: "supervisor_teacher", widget: "string" }
+          - label: "Status"
+            name: "status"
+            widget: "select"
+            options: ["In progress", "Completed", "Paused", "Switched"]
+          - label: "Course changes (if any)"
+            name: "switches"
+            widget: "list"
+            allow_add: true
+            fields:
+              - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+              - { label: "Reason for the change", name: "reason", widget: "text" }
+          - label: "Progress log entries"
+            name: "log"
+            widget: "list"
+            allow_add: true
+            fields:
+              - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+              - { label: "What you worked on / progress", name: "note", widget: "text" }
+
+  - name: "journal"
+    label: "Reflection Journal"
+    files:
+      - name: "journal"
+        label: "Journal entries"
+        file: "content/journal.json"
+        fields:
+          - label: "Entries (add one after every session)"
+            name: "entries"
+            widget: "list"
+            allow_add: true
+            summary: "{{date}} — {{what_i_worked_on}}"
+            fields:
+              - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+              - label: "Self-rated focus this session"
+                name: "focus_grade"
+                widget: "select"
+                options: ["A", "B", "C", "D", "F"]
+                required: false
+              - { label: "What you worked on", name: "what_i_worked_on", widget: "text" }
+              - { label: "What was hard, and what you did about it", name: "what_was_hard", widget: "text" }
+              - { label: "Next step", name: "next_step", widget: "text" }
+
+  - name: "bio"
+    label: "Learner Bio"
+    files:
+      - name: "bio"
+        label: "Learner bio content"
+        file: "content/bio.json"
+        fields:
+          - { label: "Display name (no last name / identifying info)", name: "display_name", widget: "string" }
+          - { label: "Grade", name: "grade", widget: "string" }
+          - { label: "One-line summary", name: "one_liner", widget: "string" }
+          - { label: "Why you picked this course", name: "why_this_course", widget: "text" }
+          - { label: "Advice for a Grade 10 student", name: "advice_for_g10", widget: "text" }
+          - label: "Interests / tags"
+            name: "interests"
+            widget: "list"
+          - { label: "Fun fact (optional, keep it safe/anonymous)", name: "fun_fact", widget: "text", required: false }
+
+  - name: "evidence"
+    label: "Evidence"
+    files:
+      - name: "evidence"
+        label: "Evidence items"
+        file: "content/evidence.json"
+        fields:
+          - label: "Items"
+            name: "items"
+            widget: "list"
+            allow_add: true
+            summary: "{{date}} — {{title}}"
+            fields:
+              - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Type"
+                name: "type"
+                widget: "select"
+                options: ["certificate", "screenshot", "project", "note"]
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Link (optional)", name: "link", widget: "string", required: false }

@@ -1,0 +1,226 @@
+/* ============================================================
+   VLD Portfolio — design tokens
+   Serif (Lora) for reading, Mono (IBM Plex Mono) for meta/nav/data.
+   Palette: pale sage paper, deep forest ink, muted teal accent,
+   burnt amber for evidence highlights.
+   ============================================================ */
+
+:root {
+  --paper: #f3f5f1;
+  --paper-raised: #ffffff;
+  --ink: #1e2a25;
+  --muted: #5b6b63;
+  --rule: #d8dbd3;
+  --accent: #3b6e62;
+  --accent-dark: #274a42;
+  --amber: #b5652d;
+  --amber-soft: #f1e3d5;
+  --max: 720px;
+  --gutter: 92px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Lora", Georgia, serif;
+  font-size: 1.08rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: "Lora", Georgia, serif; font-weight: 600; line-height: 1.25; margin: 0 0 0.4em; }
+h1 { font-size: 2.1rem; }
+h2 { font-size: 1.45rem; margin-top: 2.6em; }
+h3 { font-size: 1.1rem; margin-top: 1.6em; }
+
+p { margin: 0 0 1em; }
+a { color: var(--accent-dark); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--amber); }
+
+.meta, nav, .tag, .stat-label, .btn, code, .field-label {
+  font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+
+/* ---------- layout shell ---------- */
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
+
+header.site-header {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-raised);
+}
+
+.header-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.wordmark {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.wordmark span { color: var(--accent); }
+
+nav.mainnav { display: flex; gap: 1.35rem; font-size: 0.86rem; flex-wrap: wrap; }
+nav.mainnav a { color: var(--muted); text-decoration: none; }
+nav.mainnav a.active, nav.mainnav a:hover { color: var(--accent-dark); }
+
+main { max-width: 920px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+/* ---------- hero ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2.5rem;
+}
+.hero .lede { font-size: 1.2rem; color: var(--ink); }
+.hero .meta { color: var(--muted); font-size: 0.82rem; margin-bottom: 0.9rem; }
+
+.stat-card {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  padding: 1.1rem 1.2rem;
+  margin-bottom: 0.9rem;
+}
+.stat-card:last-child { margin-bottom: 0; }
+.stat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.03em; }
+.stat-value { font-size: 1.05rem; margin-top: 0.2rem; }
+
+/* ---------- gutter / dated-entry layout (journal, course log) ---------- */
+
+.entry {
+  display: grid;
+  grid-template-columns: var(--gutter) 1fr;
+  gap: 1.4rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.entry:first-of-type { border-top: 1px solid var(--rule); }
+.entry-gutter {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.74rem;
+  color: var(--muted);
+  padding-top: 0.25rem;
+  line-height: 1.5;
+}
+.entry-gutter .tag {
+  display: inline-block;
+  margin-top: 0.4rem;
+  padding: 0.12rem 0.4rem;
+  border: 1px solid var(--rule);
+  font-size: 0.68rem;
+  color: var(--accent-dark);
+}
+.entry-body h3 { margin-top: 0; }
+.entry-body .field-label {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+  margin: 0.9rem 0 0.15rem;
+}
+.entry-body .field-label:first-child { margin-top: 0; }
+
+/* ---------- evidence cards ---------- */
+
+.evidence-grid { display: grid; gap: 1.1rem; }
+.evidence-card {
+  border: 1px solid var(--rule);
+  background: var(--paper-raised);
+  padding: 1.2rem 1.3rem;
+  display: grid;
+  grid-template-columns: var(--gutter) 1fr;
+  gap: 1.4rem;
+}
+.evidence-card .kind {
+  display: inline-block;
+  background: var(--amber-soft);
+  color: var(--amber);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.68rem;
+  padding: 0.15rem 0.45rem;
+  margin-top: 0.5rem;
+}
+
+/* ---------- bio ---------- */
+
+.bio-card {
+  border: 1px solid var(--rule);
+  background: var(--paper-raised);
+  padding: 1.8rem 2rem;
+}
+.bio-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 0; }
+.bio-tags .tag {
+  border: 1px solid var(--rule);
+  padding: 0.15rem 0.55rem;
+  font-size: 0.72rem;
+  color: var(--accent-dark);
+}
+
+/* ---------- misc ---------- */
+
+.empty-state {
+  color: var(--muted);
+  font-size: 0.95rem;
+  padding: 1.4rem 0;
+  border: 1px dashed var(--rule);
+  text-align: center;
+}
+
+.intro-note {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+footer.site-footer {
+  border-top: 1px solid var(--rule);
+  margin-top: 4rem;
+}
+.footer-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 1.6rem 1.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.footer-inner a { color: var(--muted); }
+
+.btn {
+  display: inline-block;
+  border: 1px solid var(--accent-dark);
+  color: var(--accent-dark);
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+.btn:hover { background: var(--accent-dark); color: var(--paper-raised); }
+
+@media (max-width: 720px) {
+  .hero { grid-template-columns: 1fr; }
+  .entry, .evidence-card { grid-template-columns: 1fr; }
+  .entry-gutter { display: flex; align-items: center; gap: 0.6rem; }
+}

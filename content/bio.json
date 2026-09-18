@@ -1,0 +1,9 @@
+{
+  "display_name": "Your Name (or a first name / initials — your choice)",
+  "grade": "Grade 11",
+  "one_liner": "I'm learning Python this year because I wanted something I could actually build with, not just study for a test.",
+  "why_this_course": "Replace this from /admin: why did you pick this course? Write it for a Grade 10 student who is deciding whether to pick the same one.",
+  "advice_for_g10": "Replace this from /admin: one or two honest, specific pieces of advice for someone about to start VLD.",
+  "interests": ["Python", "problem solving"],
+  "fun_fact": "Optional — something light and safe about you."
+}
