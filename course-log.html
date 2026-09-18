@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Log · VLD Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="index.html">vld<span>/</span>portfolio</a>
+    <nav class="mainnav">
+      <a href="index.html">Home</a>
+      <a href="course-log.html" class="active">Course Log</a>
+      <a href="journal.html">Journal</a>
+      <a href="bio.html">Learner Bio</a>
+      <a href="evidence.html">Evidence</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1>Course Log</h1>
+  <p class="intro-note">What I chose, why, when it was approved, and a running log of progress and any course changes.</p>
+
+  <div id="course-summary"></div>
+
+  <h2>Progress log</h2>
+  <div id="log-entries"><div class="empty-state">Loading…</div></div>
+
+  <h2 id="switches-heading" style="display:none;">Course changes</h2>
+  <div id="switches"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Kang Chiao International School · Virtual Learning &amp; Development · 2026–2027</span>
+    <a href="index.html">← Back to home</a>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script>
+(async function () {
+  const data = await loadJSON("content/course-log.json");
+  if (!data) return;
+
+  document.getElementById("course-summary").innerHTML = `
+    <div class="stat-card">
+      <div class="stat-label">Course</div>
+      <div class="stat-value"><a href="${escapeHTML(data.course_url)}">${escapeHTML(data.course_name)}</a> — ${escapeHTML(data.provider)}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Why I chose it</div>
+      <div class="stat-value">${paragraphs(data.why)}</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Approved</div>
+      <div class="stat-value">${formatDate(data.approved_date)} · Supervisor: ${escapeHTML(data.supervisor_teacher)} · Status: ${escapeHTML(data.status)}</div>
+    </div>
+  `;
+
+  const logHost = document.getElementById("log-entries");
+  const log = (data.log || []).slice().sort((a, b) => (a.date < b.date ? 1 : -1));
+  if (log.length === 0) {
+    logHost.innerHTML = emptyState("No progress notes yet.");
+  } else {
+    logHost.innerHTML = log.map((e) => `
+      <div class="entry">
+        <div class="entry-gutter">${formatDate(e.date)}</div>
+        <div class="entry-body">${paragraphs(e.note)}</div>
+      </div>
+    `).join("");
+  }
+
+  const switches = data.switches || [];
+  if (switches.length > 0) {
+    document.getElementById("switches-heading").style.display = "";
+    document.getElementById("switches").innerHTML = switches.map((s) => `
+      <div class="entry">
+        <div class="entry-gutter">${formatDate(s.date)}</div>
+        <div class="entry-body">${paragraphs(s.reason)}</div>
+      </div>
+    `).join("");
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home · VLD Portfolio</title>
+<meta name="description" content="Virtual Learning & Development portfolio — Python (freeCodeCamp), weekly reflection journal, and evidence of progress.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="index.html">vld<span>/</span>portfolio</a>
+    <nav class="mainnav">
+      <a href="index.html" class="active">Home</a>
+      <a href="course-log.html">Course Log</a>
+      <a href="journal.html">Journal</a>
+      <a href="bio.html">Learner Bio</a>
+      <a href="evidence.html">Evidence</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="meta" id="home-meta">Loading…</div>
+      <h1 id="home-tagline">&nbsp;</h1>
+      <p class="lede" id="home-about">Loading…</p>
+    </div>
+    <div id="home-stats"></div>
+  </section>
+
+  <h2>What this site is</h2>
+  <p>This is my Virtual Learning &amp; Development portfolio for Kang Chiao International School, 2026–2027. It documents one thing: the year I spent teaching myself Python through freeCodeCamp, one supervised period a week, and how honestly I can say I ran that time myself.</p>
+  <p>Four pages beyond this one: a <a href="course-log.html">course log</a> of what I actually did and when, a <a href="journal.html">weekly reflection journal</a> written right after each session, a short <a href="bio.html">learner bio</a> for next year's students, and the <a href="evidence.html">evidence</a> — certificates, screenshots, and things I actually built.</p>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Kang Chiao International School · Virtual Learning &amp; Development · 2026–2027</span>
+    <span><a href="https://www.freecodecamp.org/learn/python-v9/">Course: Scientific Computing with Python (freeCodeCamp)</a></span>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script>
+(async function () {
+  const data = await loadJSON("content/home.json");
+  if (!data) return;
+  document.getElementById("home-meta").textContent = `${data.grade || ""} · ${data.course_name || ""}`.trim();
+  document.getElementById("home-tagline").textContent = data.tagline || "";
+  document.getElementById("home-about").innerHTML = paragraphs(data.about);
+
+  const statsHost = document.getElementById("home-stats");
+  (data.stats || []).forEach((s) => {
+    const card = document.createElement("div");
+    card.className = "stat-card";
+    card.innerHTML = `<div class="stat-label">${escapeHTML(s.label)}</div><div class="stat-value">${escapeHTML(s.value)}</div>`;
+    statsHost.appendChild(card);
+  });
+})();
+</script>
+</body>
+</html>

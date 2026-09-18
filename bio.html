@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learner Bio · VLD Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="index.html">vld<span>/</span>portfolio</a>
+    <nav class="mainnav">
+      <a href="index.html">Home</a>
+      <a href="course-log.html">Course Log</a>
+      <a href="journal.html">Journal</a>
+      <a href="bio.html" class="active">Learner Bio</a>
+      <a href="evidence.html">Evidence</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1>Learner Bio</h1>
+  <p class="intro-note">Written for next year's Grade 10 students who are deciding whether to take this course. Nothing identifying goes here — no last name, no contact details, no photos of home or family.</p>
+
+  <div class="bio-card" id="bio-card">Loading…</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>Kang Chiao International School · Virtual Learning &amp; Development · 2026–2027</span>
+    <a href="index.html">← Back to home</a>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script>
+(async function () {
+  const data = await loadJSON("content/bio.json");
+  const host = document.getElementById("bio-card");
+  if (!data) { host.innerHTML = emptyState("Bio not available yet."); return; }
+  host.innerHTML = `
+    <h3>${escapeHTML(data.display_name)} — ${escapeHTML(data.grade)}</h3>
+    <p class="lede">${escapeHTML(data.one_liner)}</p>
+    <span class="field-label">Why I picked this course</span>
+    ${paragraphs(data.why_this_course)}
+    <span class="field-label">If you're about to start VLD</span>
+    ${paragraphs(data.advice_for_g10)}
+    ${data.fun_fact ? `<span class="field-label">One more thing</span>${paragraphs(data.fun_fact)}` : ""}
+    ${(data.interests && data.interests.length) ? `<div class="bio-tags">${data.interests.map(i => `<span class="tag">${escapeHTML(i)}</span>`).join("")}</div>` : ""}
+  `;
+})();
+</script>
+</body>
+</html>
