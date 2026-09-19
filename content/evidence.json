@@ -6,6 +6,12 @@
       "type": "note",
       "description": "Add real evidence from /admin as you finish things: a certificate, a screenshot of a passing test suite, a link to a project, or a short writeup of what you built.",
       "link": ""
+    },
+    {
+      "date": "2026-09-30",
+      "title": "test",
+      "type": "screenshot",
+      "description": "screenshot"
     }
   ]
 }
