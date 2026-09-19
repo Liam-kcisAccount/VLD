@@ -3,9 +3,15 @@
     {
       "date": "2026-09-01",
       "focus_grade": "B",
-      "what_i_worked_on": "Replace this seed entry from /admin. Say specifically what you worked on this session — the module, project, or concept.",
-      "what_was_hard": "Name something that was actually difficult, and what you did about it (looked it up, asked, tried a different approach, went back over something).",
-      "next_step": "One concrete thing you'll do next session."
+      "what_i_worked_on": "(SEED SAMPLE WILL BE DELETED) Replace this seed entry from /admin. Say specifically what you worked on this session — the module, project, or concept.",
+      "what_was_hard": "(SEED SAMPLE WILL BE DELETED) Name something that was actually difficult, and what you did about it (looked it up, asked, tried a different approach, went back over something).",
+      "next_step": "(SEED SAMPLE WILL BE DELETED) One concrete thing you'll do next session."
+    },
+    {
+      "date": "2026-09-18",
+      "what_i_worked_on": "Create this website using Claude and netlify",
+      "what_was_hard": "Unable to edit the website, and the soltion is to give more specific command to ai.",
+      "next_step": "Start doing my free code camp python website"
     }
   ]
 }
