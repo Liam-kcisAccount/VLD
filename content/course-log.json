@@ -1,16 +1,16 @@
 {
-  "course_name": "Scientific Computing with Python",
-  "provider": "freeCodeCamp",
-  "course_url": "https://www.freecodecamp.org/learn/python-v9/",
-  "why": "I want a solid, practical grounding in Python before university — something I can point to beyond a grade on a transcript. freeCodeCamp's format (projects you actually have to get working, not just multiple choice) fits how I learn best.",
-  "approved_date": "2026-08-01",
-  "supervisor_teacher": "Ms./Mr. [Supervisor Name]",
-  "status": "In progress",
   "switches": [],
   "log": [
     {
       "date": "2026-09-01",
       "note": "Replace this seed entry from the /admin panel. A course-log entry should say what module or project you worked on, and roughly how far you got."
     }
-  ]
+  ],
+  "why": "Python is one of the most popular programming languages in the world. Studying it can be extremely useful for my college and my career.",
+  "supervisor_teacher": "Ms. Joyce Yaung",
+  "course_url": "https://www.freecodecamp.org/learn/python-v9/",
+  "course_name": "Python Certification",
+  "provider": "freeCodeCamp",
+  "status": "In progress",
+  "approved_date": "2026-08-01"
 }
