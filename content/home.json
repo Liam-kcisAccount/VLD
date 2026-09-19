@@ -1,15 +1,27 @@
 {
-  "name": "Your Name",
-  "grade": "Grade 11",
-  "tagline": "Learning Python, one focused period at a time.",
+  "name": "Liam Fang",
+  "grade": "Grade 12",
+  "tagline": "Learning Python via online selflearning website",
   "about": "I'm working through freeCodeCamp's Python curriculum for VLD this year — mostly because I want a real, practical coding foundation before I apply to university, not because anyone assigned it to me. This site is my course log, my weekly reflection journal, and the evidence of what I've actually built along the way.\n\nEverything here gets updated weekly. If a page looks stale, that's a fair thing to ask me about.",
-  "course_name": "Scientific Computing with Python — freeCodeCamp",
+  "course_name": "Python Certification",
   "course_url": "https://www.freecodecamp.org/learn/python-v9/",
   "start_date": "2026-08-01",
   "stats": [
-    { "label": "Course", "value": "Python (freeCodeCamp)" },
-    { "label": "Status", "value": "In progress" },
-    { "label": "Journal entries", "value": "See Reflection Journal" },
-    { "label": "Last updated", "value": "2026-09-18" }
+    {
+      "label": "Course",
+      "value": "Python (freeCodeCamp)"
+    },
+    {
+      "label": "Status",
+      "value": "In progress"
+    },
+    {
+      "label": "Journal entries",
+      "value": "See Reflection Journal"
+    },
+    {
+      "label": "Last updated",
+      "value": "2026-09-18"
+    }
   ]
 }
