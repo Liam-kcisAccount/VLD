@@ -4,18 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin · VLD Portfolio</title>
+  <!-- Forces Decap CMS to fetch config.yml from this exact absolute path,
+       instead of a relative path resolved against the current URL. Without
+       this, visiting "/admin" (no trailing slash) makes the browser resolve
+       the relative "config.yml" request as "/config.yml" (site root) instead
+       of "/admin/config.yml", which 404s even though the file is right there. -->
+  <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
   <!-- This page is the ONLY editable entry point to the site.
        It requires a Netlify Identity login (invite-only) to do anything.
        Anyone without an invite who opens this URL sees a login screen
        and nothing else — they cannot read or change content from here. -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-</head>
-<body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   <script>
-    // Redirect Identity's confirmation/invite links back to this admin page.
+    // Explicitly force the widget to open whenever an invite / recovery /
+    // confirmation token is present in the URL. Relying purely on the
+    // widget's automatic hash-detection can silently authenticate the
+    // token without ever showing the "set your password" screen — this
+    // makes sure the modal actually appears.
     if (window.netlifyIdentity) {
+      var hasAuthToken = /invite_token|recovery_token|confirmation_token|email_change_token/.test(window.location.hash);
       window.netlifyIdentity.on("init", (user) => {
+        if (hasAuthToken) {
+          window.netlifyIdentity.open();
+        }
         if (!user) {
           window.netlifyIdentity.on("login", () => {
             document.location.href = "/admin/";
@@ -24,5 +35,8 @@
       });
     }
   </script>
+</head>
+<body>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
 </html>
